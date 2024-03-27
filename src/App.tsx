@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { Container, Grid } from '@mui/material';
+import ProductTable from './components/ProductTable';
+import {productData, productTransactionsChart} from './data/products';
+import ProductTransactionsChart from './components/ProductTransactionsChart';
+import FilterProduct from './components/FilterProduct';
+import ProductVolumByCountry from './components/ProductVolumByCountry';
 
-function App() {
+const App: React.FC = () => {
+  const [filteredProducts, setFilteredProducts] = useState([...productData]);
+
+  const handleFilterChange = (productName: string) => {
+    if (!productName.length) {
+      setFilteredProducts([...productData]);
+    } else {
+      setFilteredProducts([
+        ...productData.filter((product) =>
+          product.product.toLowerCase().includes(productName.toLowerCase())
+        ),
+      ]);
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container maxWidth="xl" style={{ padding: 24 }}>
+      <Grid container spacing={3}>
+        <Grid item xs={12} md={6}>
+          <ProductTransactionsChart productData={productTransactionsChart} />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <ProductVolumByCountry productData={productTransactionsChart} />
+        </Grid>
+        <Grid item xs={12}>
+          <FilterProduct onSearch={handleFilterChange} />
+        </Grid>
+        <Grid item xs={12}>
+          <ProductTable productData={filteredProducts} />
+        </Grid>
+      </Grid>
+    </Container>
   );
-}
+};
 
 export default App;
