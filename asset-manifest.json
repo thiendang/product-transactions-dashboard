@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/product-transactions-dashboard/static/css/main.e6c13ad2.css",
+    "main.js": "/product-transactions-dashboard/static/js/main.ea78f4bb.js",
+    "static/js/453.16ca73bd.chunk.js": "/product-transactions-dashboard/static/js/453.16ca73bd.chunk.js",
+    "index.html": "/product-transactions-dashboard/index.html",
+    "main.e6c13ad2.css.map": "/product-transactions-dashboard/static/css/main.e6c13ad2.css.map",
+    "main.ea78f4bb.js.map": "/product-transactions-dashboard/static/js/main.ea78f4bb.js.map",
+    "453.16ca73bd.chunk.js.map": "/product-transactions-dashboard/static/js/453.16ca73bd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.ea78f4bb.js"
+  ]
+}
