@@ -29,8 +29,6 @@ jobs:
       run: npm run build
     #- name: Test
     #  run: npm test
-    - name: Deploy🚀
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        branch: gh-pages
-        folder: build
+    - name: deploy to github pages
+      id: deployment
+      uses: actions/deploy-pages@v4
