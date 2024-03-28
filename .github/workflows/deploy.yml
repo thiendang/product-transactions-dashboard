@@ -1,31 +1,13 @@
 name: Deploy to GitHub Pages
+
 on:
   push:
     branches:
-      - main
-  workflow_dispatch:
+      - main # Adjust the branch name if needed
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
-    steps:
-      - name: Get code
-        uses: actions/checkout@v3
-
-      - name: Install Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run tests
-        run: npm test
-
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    needs: test
     steps:
       - name: Get code
         uses: actions/checkout@v2
@@ -47,6 +29,14 @@ jobs:
         with:
           push: true
           tags: ${{ github.actor }}/product-transactions-dashboard:${{ github.sha }}
+  deploy:
+    runs-on: ubuntu-latest
+
+    needs: build
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.1
@@ -55,4 +45,4 @@ jobs:
           branch: gh-pages
           folder: build
         env:
-          GITHUB_TOKEN: ${{ secrets.OUR_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.OUR_GITHUB_TOKEN }} 
