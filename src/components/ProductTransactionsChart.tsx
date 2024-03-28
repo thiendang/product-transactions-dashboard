@@ -15,7 +15,9 @@ import {
   LinearScale,
   CategoryScale,
   BarElement,
+  BarController,
   PointElement,
+  LineController,
   LineElement,
   Legend,
   Tooltip,
@@ -87,8 +89,10 @@ ChartJS.register(
   LinearScale,
   CategoryScale,
   BarElement,
+  BarController,
   PointElement,
   LineElement,
+  LineController,
   Legend,
   Tooltip
 );

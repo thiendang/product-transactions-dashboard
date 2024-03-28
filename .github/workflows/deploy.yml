@@ -1,3 +1,4 @@
+
 name: Build and Deploy
 
 on:
@@ -14,14 +15,6 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
-        
-    permissions:
-      pages: write
-      id-token: write
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
     - name: Checkout
@@ -37,6 +30,8 @@ jobs:
       run: npm run build
     #- name: Test
     #  run: npm test
-    - name: deploy to github pages
-      id: deployment
-      uses: actions/deploy-pages@v4
+    - name: Deploy🚀
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        branch: gh-pages
+        folder: build
