@@ -43,5 +43,5 @@ jobs:
           npm install
           git config --global user.email 'github-actions@github.com'
           git config --global user.name 'github-actions'
-          git remote set-url origin https://${{ secrets.PAT }}@github.com/username/repository.git
-          CI=false && npm run deploy
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          npm run deploy
