@@ -1,12 +1,8 @@
-version: "3.8"  # Specify the Docker Compose version
-
+version: '3'
 services:
   react-app:
-    build: .  # Build the image from the current directory (your project root)
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "3000:3000"  # Map container port 3000 to host port 3000
-    volumes:
-      - .:/app  # Mount your project directory as /app within the container
-    command: ["npm", "start"]  # Start command to run the React app
-
-  # Add additional services here if needed (e.g., database, API)
+      - '80:80'
