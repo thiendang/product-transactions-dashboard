@@ -1,19 +1,15 @@
-# Build Front end Phase
-FROM node:18-alpine as build
-EXPOSE 80
-WORKDIR /app
-
+# Step 1: Build React App
+FROM node:alpine3.18 as build
+WORKDIR /app 
 COPY package.json .
 RUN npm install
 COPY . .
 RUN npm run build
 
-# NGINX Phase
-FROM nginx
-COPY --from=build /app/build /usr/share/nginx/html
-
-# Expose port 80 to the outside world
-EXPOSE 3000
-
-# Command to run Nginx in the foreground
-CMD ["nginx", "-g", "daemon off;"]
+# Step 2: Server With Nginx
+FROM nginx:1.23-alpine
+WORKDIR /usr/share/nginx/html
+RUN rm -rf *
+COPY --from=build /app/build .
+EXPOSE 80
+ENTRYPOINT [ "nginx", "-g", "daemon off;" ]

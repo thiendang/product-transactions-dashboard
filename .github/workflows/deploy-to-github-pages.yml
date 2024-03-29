@@ -1,5 +1,5 @@
 
-name: Build and Deploy
+name: Build and deploy to github pages
 
 on:
   push:
@@ -28,9 +28,7 @@ jobs:
       run: npm ci
     - name: Build
       run: npm run build
-    #- name: Test
-    #  run: npm test
-    - name: Deploy 🚀
+    - name: Deploy to Github Pages 🚀
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         branch: gh-pages
